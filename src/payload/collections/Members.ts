@@ -1,0 +1,92 @@
+import type { CollectionConfig } from "payload";
+
+// Capital + industry members directory.
+// Source: MEMBER_CAPITAL + MEMBER_INDUSTRY in prototype members.jsx.
+// `featuredOnHome` drives the founding-coalition strip on the home page.
+export const Members: CollectionConfig = {
+  slug: "members",
+  admin: {
+    useAsTitle: "name",
+    defaultColumns: ["name", "kind", "city", "state", "featuredOnHome"],
+  },
+  fields: [
+    {
+      name: "name",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "kind",
+      type: "select",
+      required: true,
+      options: [
+        { label: "Capital", value: "capital" },
+        { label: "Industry", value: "industry" },
+      ],
+    },
+    {
+      name: "type",
+      type: "text",
+      admin: {
+        description:
+          "Capital only: Fund, Angel network, Family Office, CVC. Leave blank for industry members.",
+        condition: (data) => data?.kind === "capital",
+      },
+    },
+    {
+      name: "sector",
+      type: "text",
+      admin: {
+        description: "Industry only: Spirits & Beverage, Healthcare, etc.",
+        condition: (data) => data?.kind === "industry",
+      },
+    },
+    {
+      name: "city",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "state",
+      type: "text",
+      defaultValue: "KY",
+    },
+    {
+      name: "note",
+      type: "textarea",
+    },
+    {
+      name: "website",
+      type: "text",
+      admin: {
+        description: "URL — full https:// link.",
+      },
+    },
+    {
+      name: "displayOrder",
+      type: "number",
+      defaultValue: 0,
+    },
+    {
+      name: "featuredOnHome",
+      type: "checkbox",
+      defaultValue: false,
+      admin: {
+        description: "Show on the home-page founding coalition strip.",
+      },
+    },
+    {
+      name: "county",
+      type: "relationship",
+      relationTo: "counties",
+    },
+    {
+      name: "tier",
+      type: "relationship",
+      relationTo: ["capitalTiers", "industryTiers"],
+      admin: {
+        description: "Polymorphic — capital members link to capitalTiers, industry to industryTiers.",
+      },
+    },
+  ],
+};
