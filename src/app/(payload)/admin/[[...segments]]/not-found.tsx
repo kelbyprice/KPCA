@@ -1,0 +1,29 @@
+/* THIS FILE IS THE PAYLOAD ADMIN 404. DO NOT MODIFY DIRECTLY. */
+
+import config from "@payload-config";
+import { generatePageMetadata, NotFoundPage } from "@payloadcms/next/views";
+import type { Metadata } from "next";
+
+import { importMap } from "../importMap.js";
+
+type Args = {
+  params: Promise<{ segments: string[] }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
+  generatePageMetadata({
+    config,
+    params,
+    searchParams: searchParams as Promise<{ [key: string]: string | string[] }>,
+  });
+
+const NotFound = ({ params, searchParams }: Args) =>
+  NotFoundPage({
+    config,
+    params,
+    searchParams: searchParams as Promise<{ [key: string]: string | string[] }>,
+    importMap,
+  });
+
+export default NotFound;
