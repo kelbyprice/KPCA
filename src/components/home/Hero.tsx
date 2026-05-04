@@ -29,7 +29,7 @@ export function Hero() {
           className="hero-grid"
         >
           <div style={{ paddingTop: 18 }}>
-            <Eyebrow noRule>Est. 2026 · KY, USA</Eyebrow>
+            <Eyebrow noRule>Est. 2026 · KY</Eyebrow>
             <div
               style={{
                 marginTop: 16,
