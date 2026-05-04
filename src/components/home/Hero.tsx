@@ -29,7 +29,7 @@ export function Hero() {
           className="hero-grid"
         >
           <div style={{ paddingTop: 18 }}>
-            <Eyebrow noRule>Est. 2026 · Lexington</Eyebrow>
+            <Eyebrow noRule>Est. 2026 · KY, USA</Eyebrow>
             <div
               style={{
                 marginTop: 16,
@@ -42,8 +42,8 @@ export function Hero() {
                 letterSpacing: "0.06em",
               }}
             >
-              <div>38.04°N</div>
-              <div>84.50°W</div>
+              <div>37.53°N</div>
+              <div>85.30°W</div>
             </div>
           </div>
 

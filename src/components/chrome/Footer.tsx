@@ -220,7 +220,6 @@ export function Footer() {
           }}
         >
           <div>© 2026 Kentucky Private Capital Association</div>
-          <div>hello@kpca.org · Lexington, KY</div>
         </div>
       </div>
     </footer>
