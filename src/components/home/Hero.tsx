@@ -51,7 +51,7 @@ export function Hero() {
             <h1
               className="display"
               style={{
-                fontSize: "clamp(44px, 7.4vw, 116px)",
+                fontSize: "clamp(36px, 5.8vw, 88px)",
                 margin: 0,
                 fontWeight: 400,
                 lineHeight: 1.04,
