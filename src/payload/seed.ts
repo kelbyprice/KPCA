@@ -51,7 +51,7 @@ const HUBS = [
 const CAPITAL_TIERS = [
   { name: "Founding", dues: "By invitation", voting: "1.5×", board: "Eligible", dealFlow: "priority", firmDisplay: "yes" },
   { name: "Individual", dues: "$50 / yr", voting: "1×", board: "Eligible", dealFlow: "standard", firmDisplay: "no" },
-  { name: "Firm*", dues: "$250 / yr + $50 each add'l professional", voting: "1×", board: "Eligible", dealFlow: "standard", firmDisplay: "yes", footnoteAnchor: "*" },
+  { name: "Firm", dues: "$250 / yr + $50 each add'l professional", voting: "1×", board: "Eligible", dealFlow: "standard", firmDisplay: "yes", footnoteAnchor: "*" },
 ];
 
 const INDUSTRY_TIERS = [
