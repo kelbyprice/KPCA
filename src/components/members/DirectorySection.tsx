@@ -1,4 +1,4 @@
-import type { Member } from "@/payload-types";
+import type { Organization } from "@/payload-types";
 
 import { SectionHeader } from "@/components/atoms/SectionHeader";
 import { StripePlaceholder } from "@/components/atoms/StripePlaceholder";
@@ -7,7 +7,7 @@ type DirectorySectionProps = {
   eyebrow: string;
   title: string;
   lede: string;
-  members: Member[];
+  members: Organization[];
   alt?: boolean;
 };
 

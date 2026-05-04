@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import type { Company, Member } from "@/payload-types";
+import type { Company, Organization } from "@/payload-types";
 
 import { DirectorySection } from "@/components/members/DirectorySection";
 import { PortfolioStrip } from "@/components/members/PortfolioStrip";
@@ -10,7 +10,7 @@ import { PortfolioStrip } from "@/components/members/PortfolioStrip";
 type Filter = "capital" | "industry" | "all";
 
 type MembersTabsProps = {
-  members: Member[];
+  members: Organization[];
   companies: Company[];
 };
 

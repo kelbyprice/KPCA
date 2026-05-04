@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
 
-import type { Company, Member } from "@/payload-types";
+import type { Company, Organization } from "@/payload-types";
 
 import { Hero } from "@/components/home/Hero";
 import { Bridge } from "@/components/home/Bridge";
@@ -77,7 +77,7 @@ async function loadHomeData(): Promise<{
 
     const [membersRes, companiesRes] = await Promise.all([
       payload.find({
-        collection: "members",
+        collection: "organizations",
         where: { featuredOnHome: { equals: true } },
         limit: 12,
         sort: "displayOrder",
@@ -89,7 +89,7 @@ async function loadHomeData(): Promise<{
       }),
     ]);
 
-    const founding: FoundingMember[] = (membersRes.docs as Member[]).map(
+    const founding: FoundingMember[] = (membersRes.docs as Organization[]).map(
       (m) => ({
         name: m.name,
         kind: m.kind,

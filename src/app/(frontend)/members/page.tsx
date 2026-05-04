@@ -1,13 +1,13 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
 
-import type { Company, Member } from "@/payload-types";
+import type { Company, Organization } from "@/payload-types";
 
 import { PageTitle } from "@/components/atoms/PageTitle";
 import { MembersTabs } from "@/components/members/MembersTabs";
 
 type MembersData = {
-  members: Member[];
+  members: Organization[];
   companies: Company[];
 };
 
@@ -17,7 +17,7 @@ async function loadMembersData(): Promise<MembersData> {
 
     const [membersRes, companiesRes] = await Promise.all([
       payload.find({
-        collection: "members",
+        collection: "organizations",
         sort: "displayOrder",
         limit: 100,
       }),
@@ -30,7 +30,7 @@ async function loadMembersData(): Promise<MembersData> {
     ]);
 
     return {
-      members: membersRes.docs as Member[],
+      members: membersRes.docs as Organization[],
       companies: companiesRes.docs as Company[],
     };
   } catch (err) {

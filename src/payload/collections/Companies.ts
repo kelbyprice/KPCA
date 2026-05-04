@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 
-// Portfolio companies built/backed by capital members. Distinct from Members.
+// Portfolio companies built/backed by capital members. Distinct from the
+// Organizations collection (which holds the member firms themselves).
 // Source: HOME_COMPANIES in prototype home.jsx.
 export const Companies: CollectionConfig = {
   slug: "companies",
@@ -49,10 +50,10 @@ export const Companies: CollectionConfig = {
     {
       name: "backedBy",
       type: "relationship",
-      relationTo: "members",
+      relationTo: "organizations",
       hasMany: true,
       admin: {
-        description: "Capital members that backed this company.",
+        description: "Capital member firms that backed this company.",
       },
     },
   ],

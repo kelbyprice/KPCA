@@ -68,7 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
-    members: Member;
+    organizations: Organization;
     companies: Company;
     events: Event;
     leadership: Leadership;
@@ -86,7 +86,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    members: MembersSelect<false> | MembersSelect<true>;
+    organizations: OrganizationsSelect<false> | OrganizationsSelect<true>;
     companies: CompaniesSelect<false> | CompaniesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     leadership: LeadershipSelect<false> | LeadershipSelect<true>;
@@ -163,9 +163,9 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "members".
+ * via the `definition` "organizations".
  */
-export interface Member {
+export interface Organization {
   id: number;
   name: string;
   kind: 'capital' | 'industry';
@@ -224,7 +224,7 @@ export interface Hub {
   id: number;
   name: string;
   description?: string | null;
-  leadOrganizer?: (number | null) | Member;
+  leadOrganizer?: (number | null) | Organization;
   /**
    * Which Kentucky counties feed into this hub.
    */
@@ -299,9 +299,9 @@ export interface Company {
    */
   featured?: boolean | null;
   /**
-   * Capital members that backed this company.
+   * Capital member firms that backed this company.
    */
-  backedBy?: (number | Member)[] | null;
+  backedBy?: (number | Organization)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -418,8 +418,8 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
-        relationTo: 'members';
-        value: number | Member;
+        relationTo: 'organizations';
+        value: number | Organization;
       } | null)
     | ({
         relationTo: 'companies';
@@ -524,9 +524,9 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "members_select".
+ * via the `definition` "organizations_select".
  */
-export interface MembersSelect<T extends boolean = true> {
+export interface OrganizationsSelect<T extends boolean = true> {
   name?: T;
   kind?: T;
   type?: T;

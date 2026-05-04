@@ -198,7 +198,7 @@ export type SeedCounts = {
   capitalTiers: number;
   industryTiers: number;
   benefits: number;
-  members: number;
+  organizations: number;
   companies: number;
   events: number;
   priorities: number;
@@ -212,7 +212,7 @@ export const runSeed = async (payload: Payload): Promise<SeedCounts> => {
     "priorities",
     "events",
     "companies",
-    "members",
+    "organizations",
     "benefits",
     "industryTiers",
     "capitalTiers",
@@ -305,14 +305,14 @@ export const runSeed = async (payload: Payload): Promise<SeedCounts> => {
   }
   payload.logger.info(`Seeded ${benefitCount} benefits.`);
 
-  // 6. Members.
-  let memberCount = 0;
+  // 6. Organizations (member firms — capital + industry).
+  let organizationCount = 0;
   for (let i = 0; i < MEMBER_CAPITAL.length; i++) {
     const m = MEMBER_CAPITAL[i];
     const countyName = CITY_TO_COUNTY[m.city];
     const countyId = countyName ? countyDocs[countyName] : undefined;
     await payload.create({
-      collection: "members",
+      collection: "organizations",
       data: {
         name: m.name,
         kind: "capital",
@@ -325,14 +325,14 @@ export const runSeed = async (payload: Payload): Promise<SeedCounts> => {
         county: countyId as any,
       },
     });
-    memberCount++;
+    organizationCount++;
   }
   for (let i = 0; i < MEMBER_INDUSTRY.length; i++) {
     const m = MEMBER_INDUSTRY[i];
     const countyName = CITY_TO_COUNTY[m.city];
     const countyId = countyName ? countyDocs[countyName] : undefined;
     await payload.create({
-      collection: "members",
+      collection: "organizations",
       data: {
         name: m.name,
         kind: "industry",
@@ -344,9 +344,9 @@ export const runSeed = async (payload: Payload): Promise<SeedCounts> => {
         county: countyId as any,
       },
     });
-    memberCount++;
+    organizationCount++;
   }
-  payload.logger.info(`Seeded ${memberCount} members.`);
+  payload.logger.info(`Seeded ${organizationCount} organizations.`);
 
   // 7. Companies.
   let companyCount = 0;
@@ -442,7 +442,7 @@ export const runSeed = async (payload: Payload): Promise<SeedCounts> => {
     capitalTiers: capitalTierCount,
     industryTiers: industryTierCount,
     benefits: benefitCount,
-    members: memberCount,
+    organizations: organizationCount,
     companies: companyCount,
     events: eventCount,
     priorities: priorityCount,

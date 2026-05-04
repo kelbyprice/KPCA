@@ -1,10 +1,13 @@
 import type { CollectionConfig } from "payload";
 
-// Capital + industry members directory.
+// Member organizations (firms): capital + industry. Public-facing label is
+// still "Members" (see /members directory page). Will mirror Clerk Orgs once
+// Phase 2 auth lands; individual humans live in the People collection.
+//
 // Source: MEMBER_CAPITAL + MEMBER_INDUSTRY in prototype members.jsx.
 // `featuredOnHome` drives the founding-coalition strip on the home page.
-export const Members: CollectionConfig = {
-  slug: "members",
+export const Organizations: CollectionConfig = {
+  slug: "organizations",
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "kind", "city", "state", "featuredOnHome"],

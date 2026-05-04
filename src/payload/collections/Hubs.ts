@@ -1,7 +1,7 @@
 import type { CollectionConfig } from "payload";
 
-// Regional hubs. Each KY county maps to a hub; members get hub affiliation
-// derived from their county (not assigned directly).
+// Regional hubs. Each KY county maps to a hub; member organizations get hub
+// affiliation derived from their county (not assigned directly).
 export const Hubs: CollectionConfig = {
   slug: "hubs",
   admin: {
@@ -21,7 +21,7 @@ export const Hubs: CollectionConfig = {
     {
       name: "leadOrganizer",
       type: "relationship",
-      relationTo: "members",
+      relationTo: "organizations",
     },
     {
       name: "counties",
