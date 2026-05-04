@@ -1,4 +1,5 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { resendAdapter } from "@payloadcms/email-resend";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload";
 import path from "path";
@@ -49,6 +50,11 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
     },
+  }),
+  email: resendAdapter({
+    defaultFromAddress: process.env.RESEND_DEFAULT_FROM_ADDRESS || "noreply@kpca.org",
+    defaultFromName: process.env.RESEND_DEFAULT_FROM_NAME || "KPCA",
+    apiKey: process.env.RESEND_API_KEY || "",
   }),
   sharp,
 });
