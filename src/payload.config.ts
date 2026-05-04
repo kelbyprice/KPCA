@@ -8,6 +8,7 @@ import sharp from "sharp";
 
 import { Users } from "./payload/collections/Users.js";
 import { Organizations } from "./payload/collections/Organizations.js";
+import { People } from "./payload/collections/People.js";
 import { Companies } from "./payload/collections/Companies.js";
 import { Events } from "./payload/collections/Events.js";
 import { Leadership } from "./payload/collections/Leadership.js";
@@ -30,6 +31,7 @@ export default buildConfig({
   },
   collections: [
     Users,
+    People,
     Organizations,
     Companies,
     Events,

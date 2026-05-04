@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    people: Person;
     organizations: Organization;
     companies: Company;
     events: Event;
@@ -86,6 +87,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    people: PeopleSelect<false> | PeopleSelect<true>;
     organizations: OrganizationsSelect<false> | OrganizationsSelect<true>;
     companies: CompaniesSelect<false> | CompaniesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
@@ -160,6 +162,51 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: number;
+  /**
+   * Clerk user ID (user_xxx). Set by webhook; do not edit by hand.
+   */
+  clerkUserId: string;
+  email: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  /**
+   * KPCA-internal role. Source of truth lives here; synced to Clerk publicMetadata on change.
+   */
+  role: 'member' | 'board' | 'chair' | 'staff';
+  /**
+   * Member firm. Null = individual capital member (no firm affiliation).
+   */
+  organization?: (number | null) | Organization;
+  /**
+   * Job title at the member firm (e.g. "Managing Partner").
+   */
+  title?: string | null;
+  /**
+   * Application state. Set to pending on signup; KSTC staff transitions to approved/rejected.
+   */
+  applicationStatus: 'pending' | 'approved' | 'rejected';
+  /**
+   * Stamped when applicationStatus first becomes approved.
+   */
+  approvedAt?: string | null;
+  /**
+   * KSTC staff member who approved the application.
+   */
+  approvedBy?: (number | null) | User;
+  /**
+   * Full https:// URL.
+   */
+  linkedinUrl?: string | null;
+  phone?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -418,6 +465,10 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'people';
+        value: number | Person;
+      } | null)
+    | ({
         relationTo: 'organizations';
         value: number | Organization;
       } | null)
@@ -521,6 +572,26 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people_select".
+ */
+export interface PeopleSelect<T extends boolean = true> {
+  clerkUserId?: T;
+  email?: T;
+  firstName?: T;
+  lastName?: T;
+  role?: T;
+  organization?: T;
+  title?: T;
+  applicationStatus?: T;
+  approvedAt?: T;
+  approvedBy?: T;
+  linkedinUrl?: T;
+  phone?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
