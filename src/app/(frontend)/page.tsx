@@ -1,6 +1,10 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
 
+// ISR: regenerate at most every 60s so admin edits to Payload-driven content
+// appear without a redeploy. Move to on-demand revalidation when needed.
+export const revalidate = 60;
+
 import type { Company, Organization } from "@/payload-types";
 
 import { Hero } from "@/components/home/Hero";
