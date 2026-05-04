@@ -19,6 +19,16 @@ export const Organizations: CollectionConfig = {
       required: true,
     },
     {
+      name: "clerkOrgId",
+      type: "text",
+      unique: true,
+      index: true,
+      admin: {
+        description:
+          "Clerk organization ID (org_xxx). Paste from the Clerk dashboard once the firm has been created there. Webhook uses this to sync memberships.",
+      },
+    },
+    {
       name: "kind",
       type: "select",
       required: true,

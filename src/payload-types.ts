@@ -215,6 +215,10 @@ export interface Person {
 export interface Organization {
   id: number;
   name: string;
+  /**
+   * Clerk organization ID (org_xxx). Paste from the Clerk dashboard once the firm has been created there. Webhook uses this to sync memberships.
+   */
+  clerkOrgId?: string | null;
   kind: 'capital' | 'industry';
   /**
    * Capital only: Fund, Angel network, Family Office, CVC. Leave blank for industry members.
@@ -599,6 +603,7 @@ export interface PeopleSelect<T extends boolean = true> {
  */
 export interface OrganizationsSelect<T extends boolean = true> {
   name?: T;
+  clerkOrgId?: T;
   kind?: T;
   type?: T;
   sector?: T;
