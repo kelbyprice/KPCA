@@ -65,14 +65,27 @@ Don't replace Payload's admin auth with Clerk. Two user systems, deliberately se
 ## Commands
 
 ```
-npm run dev              # next dev — frontend + admin both available
+npm run dev              # next dev --webpack (frontend + admin)
 npm run build            # production build (needs DATABASE_URI to compile)
 npm run generate:types   # regenerate src/payload-types.ts from collections
+npm run seed             # bulk-seed prototype data via /api/seed (dev-only)
 npm run payload          # Payload CLI (migrations, etc.)
 ```
+
+## Why we run webpack instead of Turbopack
+
+Payload's CLI (tsx) requires explicit `.js` extensions on relative imports in `payload.config.ts` under `"type": "module"` (Node ESM rules). Bundlers then need to resolve `.js → .ts` source. Webpack does this via `extensionAlias` in next.config.ts. Turbopack doesn't yet support per-extension alias resolution, so dev runs on webpack. Production `next build` is webpack-based by default already.
+
+If/when Turbopack adds extensionAlias support, drop `--webpack` from the dev script.
+
+## Why generate:types output looks truncated when piped
+
+If you run `npm run generate:types | tail -N`, the pipe closes early and SIGPIPEs the Payload CLI before it writes the file. Always redirect to a file (`> /tmp/log`) or omit the pipe.
 
 ## Don'ts
 
 - Don't edit `src/app/(payload)/admin/importMap.js` by hand — regenerate via `payload generate:importmap`.
 - Don't add Tailwind without a discussion — current design is a bespoke CSS-variable theme ported from the prototype.
 - Don't commit `prototype-extracted/` or the original `.html` bundle (both gitignored).
+- Don't drop `"type": "module"` from package.json — Payload's CLI requires it.
+- Don't drop the `.js` extensions on relative imports in `payload.config.ts` — Payload's CLI requires them.

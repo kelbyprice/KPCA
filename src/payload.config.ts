@@ -5,17 +5,17 @@ import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./payload/collections/Users";
-import { Members } from "./payload/collections/Members";
-import { Companies } from "./payload/collections/Companies";
-import { Events } from "./payload/collections/Events";
-import { Leadership } from "./payload/collections/Leadership";
-import { Priorities } from "./payload/collections/Priorities";
-import { CapitalTiers } from "./payload/collections/CapitalTiers";
-import { IndustryTiers } from "./payload/collections/IndustryTiers";
-import { Benefits } from "./payload/collections/Benefits";
-import { Hubs } from "./payload/collections/Hubs";
-import { Counties } from "./payload/collections/Counties";
+import { Users } from "./payload/collections/Users.js";
+import { Members } from "./payload/collections/Members.js";
+import { Companies } from "./payload/collections/Companies.js";
+import { Events } from "./payload/collections/Events.js";
+import { Leadership } from "./payload/collections/Leadership.js";
+import { Priorities } from "./payload/collections/Priorities.js";
+import { CapitalTiers } from "./payload/collections/CapitalTiers.js";
+import { IndustryTiers } from "./payload/collections/IndustryTiers.js";
+import { Benefits } from "./payload/collections/Benefits.js";
+import { Hubs } from "./payload/collections/Hubs.js";
+import { Counties } from "./payload/collections/Counties.js";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

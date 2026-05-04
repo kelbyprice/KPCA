@@ -41,8 +41,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Payload generated types (committed if desired; ignoring for now while schema churns)
-src/payload-types.ts
+# Payload generated types are committed — saves teammates / CI from running
+# `npm run generate:types` and gives accurate type-checking from a fresh clone.
 
 # Prototype reference (large; design source-of-truth lives at content-model.md)
 prototype-extracted/
